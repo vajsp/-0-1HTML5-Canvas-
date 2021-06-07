@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="ccc" style="border: 1px dashed black"></canvas>
+  <img id="pic" src="images/princess.png" alt="" />
+  <button id="btn">按钮啊</button>
+  <button id="btn2">第二个按钮啊</button>
+</body>
+
+</html>
+<script>
+  let canvas = document.getElementById('ccc')
+
+  window.onload = function () {
+    var context = canvas.getContext('2d');
+
+
+    context.fillStyle = 'HotPink';
+    context.fillRect(30, 30, 50, 50);
+
+    document.getElementById('btn').onclick = () => {
+      context.scale(1.5, 1.5);
+      context.fillStyle = '#9966FF';
+      context.fillRect(30, 30, 50, 50);
+    }
+
+    document.getElementById('btn2').onclick = () => {
+      context.scale(0.5, 0.5);
+      context.fillStyle = 'LightSkyBlue';
+      context.fillRect(30, 30, 50, 50);
+
+
+    }
+
+  }
+</script>
