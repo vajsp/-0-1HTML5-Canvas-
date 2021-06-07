@@ -5,6 +5,7 @@
   <title></title>
   <meta charset="utf-8" />
   <script src="js/tools.js"></script>
+  <script src="js/ball.js"></script>
   <script type="text/javascript">
     function $$(id) {
       return document.getElementById(id);
@@ -12,33 +13,20 @@
     window.onload = function () {
       var cnv = $$("canvas");
       var cxt = cnv.getContext("2d");
-      var text = document.getElementById("p1");
 
-      var centerx = cnv.width / 2;
-      var centery = cnv.height / 2;
-      // console.log(tools.getMouse(cnv));
-      var mouse = tools.getMouse(cnv);
+      var ball = new Ball(0, cnv.height / 2);
+      var vx = 8;
+      var ax = -0.2;
 
       (function frame() {
         window.requestAnimationFrame(frame)
-        cxt.clearRect(0, 0, cnv.width, cnv.height);
+        cxt.clearRect(0, 0, cnv.width, cnv.height)
 
-        cxt.save()
-        cxt.beginPath();
-        cxt.moveTo(centerx, centery);
+        ball.x += vx
+        ball.fill(cxt);
 
-        cxt.lineTo(mouse.x, mouse.y);
-        cxt.closePath();
+        vx += ax;
 
-        cxt.strokeStyle = 'green';
-        cxt.stroke();
-        cxt.restore();
-
-        var dx = mouse.x - centerx
-        var dy = mouse.y - centery
-
-        var distance = Math.sqrt(dx * dx + dy * dy)
-        text.innerText = "鼠标与中点距离为" + distance
       })()
 
     }
@@ -47,7 +35,6 @@
 
 <body>
   <canvas id="canvas" width="200" height="150" style="border:1px solid silver;"></canvas>
-  <p id="p1"></p>
 </body>
 
 </html>
